@@ -1,19 +1,40 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchWeather = createAsyncThunk(
-  'weather/fetchWeather',
+export const fetchCurrentWeather = createAsyncThunk(
+  'weather/fetchCurrentWeather',
   async function (value, { dispatch, rejectWithValue }) {
     dispatch(setCity({ city: value.label }))
     try {
-      const weather = await axios.get('http://api.openweathermap.org/data/2.5/forecast', {
+      const weather = await axios.get('http://api.openweathermap.org/data/2.5/weather', {
         params: {
           appid: 'b18902f68153db12e44ee147bb59bcf2',
           id: value.value,
           units: 'metric',
+          lang: 'ru',
         }
       });
-      return weather.data.list;
+      return weather;
+    } catch (err) {
+      rejectWithValue(err)
+    }
+  }
+);
+
+export const fetchForecast = createAsyncThunk(
+  'weather/fetchForecast',
+  async function (value, { dispatch, rejectWithValue }) {
+    dispatch(setCity({ city: value.label }))
+    try {
+      const forecast = await axios.get('http://api.openweathermap.org/data/2.5/forecast', {
+        params: {
+          appid: 'b18902f68153db12e44ee147bb59bcf2',
+          id: value.value,
+          units: 'metric',
+          lang: 'ru',
+        }
+      });
+      return forecast.data.list;
     } catch (err) {
       rejectWithValue(err)
     }
@@ -25,6 +46,7 @@ const weatherSlice = createSlice({
   initialState: {
     city: null,
     forecast: [],
+    weather: []
   },
   reducers: {
     setCity(state, action) {
@@ -32,15 +54,21 @@ const weatherSlice = createSlice({
     }
   },
   extraReducers: {
-    [fetchWeather.pending]: (state) => {
+    [fetchForecast.pending]: (state) => {
       state.forecast = null;
     },
-    [fetchWeather.fulfilled]: (state, action) => {
+    [fetchForecast.fulfilled]: (state, action) => {
       state.forecast = action.payload;
     },
-    [fetchWeather.rejected]: (state, action) => {
+    [fetchForecast.rejected]: (state, action) => {},
 
+    [fetchCurrentWeather.pending]: (state) => {
+      state.weather = null;
     },
+    [fetchCurrentWeather.fulfilled]: (state, action) => {
+      state.weather = action.payload;
+    },
+    [fetchCurrentWeather.rejected]: (state, action) => {},
   }
 });
 
