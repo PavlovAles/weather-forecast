@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import { cityList } from '../../cityList';
 import { useDispatch } from 'react-redux';
-import { setCity } from '../../store/citySlice';
+import { setCity } from '../../store/weatherSlice';
 
 const cityListOrdered = cityList.sort((a,b) => a.label.localeCompare(b.label));
 

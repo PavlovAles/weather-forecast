@@ -5,7 +5,7 @@ import SearchBar from '../searchBar/SearchBar';
 import { useSelector } from 'react-redux';
 
 function App() {
-  const city = useSelector(state => state.cities.city);
+  const city = useSelector(state => state.weather.city);
   return (
     <div>
       <Header />
