@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Select from 'react-select';
 import { cityList } from '../../cityList';
+import { useDispatch } from 'react-redux';
+import { setCity } from '../../store/citySlice';
 
 const cityListOrdered = cityList.sort((a,b) => a.label.localeCompare(b.label));
 
 function SearchBar() {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const dispatch = useDispatch();
 
   return (
     <Select
-      value={selectedOption}
-      onChange={setSelectedOption}
+    onChange={(value) => dispatch(setCity({ city: value}))}
       options={cityListOrdered}
       placeholder='Город'
     />
