@@ -6,12 +6,15 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const city = useSelector(state => state.weather.city);
+  const forecast = useSelector(state => state.weather.forecast);
+
+  console.log(city, forecast);
+
   return (
-    <div>
+    <div className={styles.page}>
       <Header />
       <div className={styles.content}>
         <SearchBar />
-        <p>{city ? city.label : ''}</p>
       </div>
     </div>
   );

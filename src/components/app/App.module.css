@@ -8,12 +8,17 @@ body {
   background-color: #ECEEF2;
 }
 
-.content {
-  margin: auto;
-  padding: 10px 24px;
-  max-width: 880px;
-  min-width: 320px;
+.page {
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+
+.content {
+  margin: 0 auto;
+  padding: 10px 24px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 880px;
+  min-width: 320px;
 }
