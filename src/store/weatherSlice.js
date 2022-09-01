@@ -14,7 +14,7 @@ export const fetchCurrentWeather = createAsyncThunk(
           lang: 'ru',
         }
       });
-      return weather;
+      return weather.data;
     } catch (err) {
       rejectWithValue(err)
     }
@@ -55,7 +55,7 @@ const weatherSlice = createSlice({
   },
   extraReducers: {
     [fetchForecast.pending]: (state) => {
-      state.forecast = null;
+      state.forecast = [];
     },
     [fetchForecast.fulfilled]: (state, action) => {
       state.forecast = action.payload;
@@ -63,7 +63,7 @@ const weatherSlice = createSlice({
     [fetchForecast.rejected]: (state, action) => {},
 
     [fetchCurrentWeather.pending]: (state) => {
-      state.weather = null;
+      state.weather = [];
     },
     [fetchCurrentWeather.fulfilled]: (state, action) => {
       state.weather = action.payload;
