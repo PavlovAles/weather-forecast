@@ -56,6 +56,13 @@
   gap: 8px;
 }
 
+.additional__icon {
+  width: 24px;
+  height: 24px;
+}
+
 .windDirection {
+  width: 12px;
+  height: 24px;
   transform-origin: center;
 }

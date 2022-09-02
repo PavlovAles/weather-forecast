@@ -37,7 +37,7 @@ function WeatherCard() {
       <div className={styles.additional}>
         <div className={styles.additional__group}>
           <img className={styles.additional__icon} src={windIconPath} alt='Ветер' />
-          <p className={styles.subtext}>{`${weather.wind.speed} м/с`}</p>
+          <p className={styles.subtext}>{`${weather.wind.speed} м/с,`}</p>
           <img className={styles.windDirection} style={{transform: `rotate(${weather.wind.deg}deg)`}} src={windDirectionPath} alt='Направление ветра' />
         </div>
         <div className={styles.additional__group}>
