@@ -3,6 +3,7 @@ import styles from './App.module.css';
 import Header from '../header/Header';
 import { useSelector } from 'react-redux';
 import WeatherCard from '../weatherCard/WeatherCard';
+import CityList from '../cityList/CityList';
 
 function App() {
   const city = useSelector(state => state.weather.city);
@@ -15,6 +16,7 @@ function App() {
       <Header />
       <div className={styles.content}>
         {weather ? <WeatherCard /> : null}
+        {weather ? <CityList /> : null}
       </div>
     </div>
   );
