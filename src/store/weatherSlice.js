@@ -1,17 +1,22 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const BASE_URL = 'http://api.openweathermap.org/data/2.5';
+const queryParams = {
+  appid: 'b18902f68153db12e44ee147bb59bcf2',
+  units: 'metric',
+  lang: 'ru',
+}
+
 export const fetchCurrentWeather = createAsyncThunk(
   'weather/fetchCurrentWeather',
   async function (value, { dispatch, rejectWithValue }) {
     dispatch(setCity({ city: value.label }))
     try {
-      const weather = await axios.get('http://api.openweathermap.org/data/2.5/weather', {
+      const weather = await axios.get(`${BASE_URL}/weather`, {
         params: {
-          appid: 'b18902f68153db12e44ee147bb59bcf2',
+          ...queryParams,
           id: value.value,
-          units: 'metric',
-          lang: 'ru',
         }
       });
       return weather.data;
@@ -26,12 +31,10 @@ export const fetchForecast = createAsyncThunk(
   async function (value, { dispatch, rejectWithValue }) {
     dispatch(setCity({ city: value.label }))
     try {
-      const forecast = await axios.get('http://api.openweathermap.org/data/2.5/forecast', {
+      const forecast = await axios.get(`${BASE_URL}/forecast`, {
         params: {
-          appid: 'b18902f68153db12e44ee147bb59bcf2',
+          ...queryParams,
           id: value.value,
-          units: 'metric',
-          lang: 'ru',
         }
       });
       return forecast.data.list;
@@ -60,7 +63,7 @@ const weatherSlice = createSlice({
     [fetchForecast.fulfilled]: (state, action) => {
       state.forecast = action.payload;
     },
-    [fetchForecast.rejected]: (state, action) => {},
+    [fetchForecast.rejected]: (state, action) => { },
 
     [fetchCurrentWeather.pending]: (state) => {
       state.weather = null;
@@ -68,7 +71,7 @@ const weatherSlice = createSlice({
     [fetchCurrentWeather.fulfilled]: (state, action) => {
       state.weather = action.payload;
     },
-    [fetchCurrentWeather.rejected]: (state, action) => {},
+    [fetchCurrentWeather.rejected]: (state, action) => { },
   }
 });
 
