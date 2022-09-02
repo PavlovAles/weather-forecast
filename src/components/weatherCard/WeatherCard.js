@@ -15,7 +15,7 @@ function WeatherCard() {
   const weather_main = weather.main;
 
   let date = new Date(weather.dt * 1000);
-  date = date.toLocaleString();
+  date = date.toLocaleString([], {day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute:'2-digit'});
 
   return (
     <div className={styles.container}>
