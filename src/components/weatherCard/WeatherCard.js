@@ -20,7 +20,7 @@ function WeatherCard() {
   return (
     <div className={styles.container}>
       <div className={styles.heading}>
-        <h1 className={styles.title}>{city}</h1>
+        <h2 className={styles.title}>{city}</h2>
         <p className={styles.subtext}>{date}</p>
       </div>
       <div className={styles.summary}>
