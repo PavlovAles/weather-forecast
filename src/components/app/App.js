@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const city = useSelector(state => state.weather.city);
-  const forecast = useSelector(state => state.weather.forecast);
+  const forecast = useSelector(state => state.weather.weather);
 
   console.log(city, forecast);
 

@@ -46,7 +46,7 @@ const weatherSlice = createSlice({
   initialState: {
     city: null,
     forecast: [],
-    weather: []
+    weather: null
   },
   reducers: {
     setCity(state, action) {
@@ -63,7 +63,7 @@ const weatherSlice = createSlice({
     [fetchForecast.rejected]: (state, action) => {},
 
     [fetchCurrentWeather.pending]: (state) => {
-      state.weather = [];
+      state.weather = null;
     },
     [fetchCurrentWeather.fulfilled]: (state, action) => {
       state.weather = action.payload;
