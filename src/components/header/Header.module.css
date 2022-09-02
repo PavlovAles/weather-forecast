@@ -2,19 +2,32 @@
 
 .header {
   margin: 0;
-  padding: 10px 24px;
+  padding: 10px 24px 6px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background-color: rgba(74, 155, 248, 0.385);
   border-bottom: 1.5px solid rgba(8, 48, 94, 0.669);
+}
+
+@media (max-width: 412px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  gap: 12px;
 }
 
 .title {
   margin: 0;
   font-size: 22px;
   line-height: 22px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--primary);
 
 }

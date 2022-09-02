@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './App.module.css';
 import Header from '../header/Header';
-import SearchBar from '../searchBar/SearchBar';
 import { useSelector } from 'react-redux';
 import WeatherCard from '../weatherCard/WeatherCard';
 
@@ -15,7 +14,6 @@ function App() {
     <div className={styles.page}>
       <Header />
       <div className={styles.content}>
-        <SearchBar />
         {weather ? <WeatherCard /> : null}
       </div>
     </div>
