@@ -1,4 +1,4 @@
-export const cityList = [
+export const cities = [
     { "value": 462444, "label": "Златоуст" },
     { "value": 463082, "label": "Жигулевск" },
     { "value": 463830, "label": "Зеленогорск" },

@@ -1,10 +1,10 @@
 import React from 'react';
 import Select from 'react-select';
-import { cityList } from '../../cityList';
+import { cities } from '../../cities';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentWeather } from '../../store/weatherSlice';
 
-const cityListOrdered = cityList.sort((a, b) => a.label.localeCompare(b.label));
+const cityListOrdered = cities.sort((a, b) => a.label.localeCompare(b.label));
 
 function SearchBar() {
   const dispatch = useDispatch();
