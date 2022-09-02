@@ -1,0 +1,61 @@
+.container {
+  max-width: 432px;
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 24px;
+  background-color: #fff;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.subtext {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.currentTemp {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+}
+
+.additional {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+@media (max-width: 440px) {
+  .additional {
+    margin-top: 24px;
+    flex-direction: column;
+  }
+}
+
+.additional__group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.windDirection {
+  transform-origin: center;
+}
