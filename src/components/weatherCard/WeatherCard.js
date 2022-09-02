@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { roundToDec } from '../../utils/utils';
 import styles from './WeatherCard.module.css';
 import windIconPath from '../../images/wind.svg';
 import windDirectionPath from '../../images/wind_direction.svg';
@@ -15,10 +16,6 @@ function WeatherCard() {
 
   let date = new Date(weather.dt * 1000);
   date = date.toLocaleString();
-
-  function roundToDec(val) {
-    return Math.round(val * 10) / 10
-  }
 
   return (
     <div className={styles.container}>
