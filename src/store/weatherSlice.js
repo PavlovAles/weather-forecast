@@ -8,6 +8,34 @@ const queryParams = {
   lang: 'ru',
 }
 
+export const fetchLocationAndWeather = createAsyncThunk(
+  'weather/fetchLocationAndWeather',
+  async function (position, { dispatch, rejectWithValue }) {
+    try {
+      const [location, weather] = await Promise.all([
+        axios.get('http://api.openweathermap.org/geo/1.0/reverse', {
+          params: {
+            ...queryParams,
+            lat: position.latitude,
+            lon: position.longitude,
+          }
+        }),
+        axios.get(`${BASE_URL}/weather`, {
+          params: {
+            ...queryParams,
+            lat: position.latitude,
+            lon: position.longitude,
+          }
+        })
+      ])
+
+      return { city: location.data[0].local_names.ru, weather: weather.data }
+    } catch (err) {
+      rejectWithValue(err)
+    }
+  }
+);
+
 export const fetchCurrentWeather = createAsyncThunk(
   'weather/fetchCurrentWeather',
   async function (value, { dispatch, rejectWithValue }) {
@@ -49,13 +77,13 @@ export const fetchPopularWeather = createAsyncThunk(
   async function (_, { rejectWithValue }) {
     try {
       const [moscow, saintP, sochi, rostovOnDon, volgograd, nizhnyN, novosib] = await Promise.all([
-        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 524894 }}),
-        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 536203 }}),
-        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 491422 }}),
-        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 501175 }}),
-        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 472757 }}),
-        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 520555 }}),
-        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 1496747 }}),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 524894 } }),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 536203 } }),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 491422 } }),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 501175 } }),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 472757 } }),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 520555 } }),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 1496747 } }),
       ])
 
       return [moscow.data, saintP.data, sochi.data, rostovOnDon.data, volgograd.data, nizhnyN.data, novosib.data]
@@ -86,7 +114,7 @@ const weatherSlice = createSlice({
       state.forecast = action.payload;
     },
     [fetchForecast.rejected]: (state, action) => { },
-
+    ///////
     [fetchCurrentWeather.pending]: (state) => {
       state.weather = null;
     },
@@ -94,7 +122,14 @@ const weatherSlice = createSlice({
       state.weather = action.payload;
     },
     [fetchCurrentWeather.rejected]: (state, action) => { },
-
+    ///////
+    [fetchLocationAndWeather.pending]: (state) => { },
+    [fetchLocationAndWeather.fulfilled]: (state, action) => {
+      state.city = action.payload.city;
+      state.weather = action.payload.weather;
+    },
+    [fetchLocationAndWeather.rejected]: (state, action) => { },
+    ///////
     [fetchPopularWeather.pending]: (state) => {
       state.popularWeather = null;
     },
