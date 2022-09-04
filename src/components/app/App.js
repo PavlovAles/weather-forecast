@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLocationAndWeather, fetchPopularWeather } from '../../store/weatherSlice';
 import styles from './App.module.css';
 import Header from '../header/Header';
-import Spinner from '../spinner/Spinner';
 import WeatherCard from '../weatherCard/WeatherCard';
 import CityList from '../cityList/CityList';
 
 function App() {
-  const [geolicationPermission, setGeolicationPermission] = useState(false);
-
   const dispatch = useDispatch();
 
   const weather = useSelector(state => state.weather.weather);
@@ -20,7 +17,6 @@ function App() {
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        setGeolicationPermission(true);
         dispatch(fetchLocationAndWeather(position.coords))
       });
     }
@@ -31,7 +27,7 @@ function App() {
     <div className={styles.page}>
       <Header />
       <div className={styles.content}>
-        {geolicationPermission && weather && <WeatherCard />}
+        {weather && <WeatherCard />}
         {popularWeather ? <CityList /> : null}
       </div>
     </div>
