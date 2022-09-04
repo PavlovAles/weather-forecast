@@ -10,7 +10,7 @@ const queryParams = {
 
 export const fetchLocationAndWeather = createAsyncThunk(
   'weather/fetchLocationAndWeather',
-  async function (position, { dispatch, rejectWithValue }) {
+  async function (position, { rejectWithValue }) {
     try {
       const [location, weather] = await Promise.all([
         axios.get('http://api.openweathermap.org/geo/1.0/reverse', {
@@ -31,7 +31,7 @@ export const fetchLocationAndWeather = createAsyncThunk(
 
       return { city: location.data[0].local_names.ru, weather: weather.data }
     } catch (err) {
-      rejectWithValue(err)
+      return rejectWithValue({ name: err.name, message: err.message });
     }
   }
 );
@@ -49,7 +49,7 @@ export const fetchCurrentWeather = createAsyncThunk(
       });
       return weather.data;
     } catch (err) {
-      rejectWithValue(err)
+      return rejectWithValue({ name: err.name, message: err.message });
     }
   }
 );
@@ -67,7 +67,7 @@ export const fetchForecast = createAsyncThunk(
       });
       return forecast.data.list;
     } catch (err) {
-      rejectWithValue(err)
+      return rejectWithValue({ name: err.name, message: err.message });
     }
   }
 );
@@ -88,7 +88,7 @@ export const fetchPopularWeather = createAsyncThunk(
 
       return [moscow.data, saintP.data, sochi.data, rostovOnDon.data, volgograd.data, nizhnyN.data, novosib.data]
     } catch (err) {
-      rejectWithValue(err)
+      return rejectWithValue({ name: err.name, message: err.message });
     }
   }
 )
@@ -100,6 +100,7 @@ const weatherSlice = createSlice({
     forecast: [],
     weather: null,
     popularWeather: null,
+    error: null,
   },
   reducers: {
     setCity(state, action) {
@@ -113,7 +114,9 @@ const weatherSlice = createSlice({
     [fetchForecast.fulfilled]: (state, action) => {
       state.forecast = action.payload;
     },
-    [fetchForecast.rejected]: (state, action) => { },
+    [fetchForecast.rejected]: (state, action) => {
+      state.error = action.payload;
+    },
     ///////
     [fetchCurrentWeather.pending]: (state) => {
       state.weather = null;
@@ -121,14 +124,19 @@ const weatherSlice = createSlice({
     [fetchCurrentWeather.fulfilled]: (state, action) => {
       state.weather = action.payload;
     },
-    [fetchCurrentWeather.rejected]: (state, action) => { },
+    [fetchCurrentWeather.rejected]: (state, action) => {
+      state.error = action.payload;
+    },
     ///////
     [fetchLocationAndWeather.pending]: (state) => { },
     [fetchLocationAndWeather.fulfilled]: (state, action) => {
+      console.log('in fulfilled')
       state.city = action.payload.city;
       state.weather = action.payload.weather;
     },
-    [fetchLocationAndWeather.rejected]: (state, action) => { },
+    [fetchLocationAndWeather.rejected]: (state, action) => {
+      state.error = action.payload;
+    },
     ///////
     [fetchPopularWeather.pending]: (state) => {
       state.popularWeather = null;
@@ -136,7 +144,9 @@ const weatherSlice = createSlice({
     [fetchPopularWeather.fulfilled]: (state, action) => {
       state.popularWeather = action.payload;
     },
-    [fetchPopularWeather.rejected]: (state, action) => { },
+    [fetchPopularWeather.rejected]: (state, action) => {
+      state.error = action.payload;
+    },
   }
 });
 
