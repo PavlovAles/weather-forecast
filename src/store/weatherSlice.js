@@ -44,12 +44,34 @@ export const fetchForecast = createAsyncThunk(
   }
 );
 
+export const fetchPopularWeather = createAsyncThunk(
+  'weather/fetchPopularWeather',
+  async function (_, { rejectWithValue }) {
+    try {
+      const [moscow, saintP, sochi, rostovOnDon, volgograd, nizhnyN, novosib] = await Promise.all([
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 524894 }}),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 536203 }}),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 491422 }}),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 501175 }}),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 472757 }}),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 520555 }}),
+        axios.get(`${BASE_URL}/weather`, { params: { ...queryParams, id: 1496747 }}),
+      ])
+
+      return [moscow.data, saintP.data, sochi.data, rostovOnDon.data, volgograd.data, nizhnyN.data, novosib.data]
+    } catch (err) {
+      rejectWithValue(err)
+    }
+  }
+)
+
 const weatherSlice = createSlice({
   name: 'weather',
   initialState: {
     city: null,
     forecast: [],
-    weather: null
+    weather: null,
+    popularWeather: null,
   },
   reducers: {
     setCity(state, action) {
@@ -72,6 +94,14 @@ const weatherSlice = createSlice({
       state.weather = action.payload;
     },
     [fetchCurrentWeather.rejected]: (state, action) => { },
+
+    [fetchPopularWeather.pending]: (state) => {
+      state.popularWeather = null;
+    },
+    [fetchPopularWeather.fulfilled]: (state, action) => {
+      state.popularWeather = action.payload;
+    },
+    [fetchPopularWeather.rejected]: (state, action) => { },
   }
 });
 
