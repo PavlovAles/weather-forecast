@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { roundToDec } from '../../utils/utils';
 import styles from './WeatherCard.module.css';
@@ -6,8 +6,12 @@ import windIconPath from '../../images/wind.svg';
 import windDirectionPath from '../../images/wind_direction.svg';
 import dropIconPath from '../../images/drop.svg';
 import gaugeIconPath from '../../images/gauge.svg';
+import { useContainerDimensions } from '../../hooks/useContainerDimensions';
 
 function WeatherCard() {
+  const containerRef = useRef();
+  const { width } = useContainerDimensions(containerRef);
+
   const city = useSelector(state => state.weather.city);
   const weather = useSelector(state => state.weather.weather);
 
@@ -15,10 +19,10 @@ function WeatherCard() {
   const weather_main = weather.main;
 
   let date = new Date(weather.dt * 1000);
-  date = date.toLocaleString([], {day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute:'2-digit'});
+  date = date.toLocaleString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={containerRef}>
       <div className={styles.heading}>
         <h2 className={styles.title}>{city}</h2>
         <p className={styles.subtext}>{date}</p>
@@ -31,11 +35,11 @@ function WeatherCard() {
           <p className={styles.subtext}>{`по ощущениям ${roundToDec(weather_main.feels_like)}°`}</p>
         </div>
       </div>
-      <div className={styles.additional}>
+      <div className={styles.additional} style={{ flexDirection: `${width > 400 ? 'row' : 'column'}` }}>
         <div className={styles.additional__group}>
           <img className={styles.additional__icon} src={windIconPath} alt='Ветер' />
           <p className={styles.subtext}>{`${weather.wind.speed} м/с,`}</p>
-          <img className={styles.windDirection} style={{transform: `rotate(${weather.wind.deg}deg)`}} src={windDirectionPath} alt='Направление ветра' />
+          <img className={styles.windDirection} style={{ transform: `rotate(${weather.wind.deg}deg)` }} src={windDirectionPath} alt='Направление ветра' />
         </div>
         <div className={styles.additional__group}>
           <img className={styles.additional__icon} src={dropIconPath} alt='Влажность' />

@@ -11,13 +11,11 @@ body {
 
 .page {
   min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
 }
 
 .content {
   margin: 0 auto;
-  padding: 10px 24px;
+  padding: 24px;
   width: 100%;
   max-width: 880px;
   min-width: 320px;
@@ -27,4 +25,11 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   gap: 24px;
+}
+
+@media (max-width: 584px) {
+  .content {
+    padding: 12px;
+    gap: 12px;
+  }
 }
