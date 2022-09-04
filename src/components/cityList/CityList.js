@@ -5,7 +5,6 @@ import { roundToDec } from '../../utils/utils';
 import styles from './CityList.module.css';
 
 function CityList() {
-  const city = useSelector(state => state.weather.city);
   const popularWeather = useSelector(state => state.weather.popularWeather);
 
   return (
