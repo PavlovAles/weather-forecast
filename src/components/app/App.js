@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLocationAndWeather, fetchPopularWeather } from '../../store/weatherSlice';
 import styles from './App.module.css';
@@ -27,8 +28,15 @@ function App() {
     <div className={styles.page}>
       <Header />
       <div className={styles.content}>
-        {weather && <WeatherCard />}
-        {popularWeather ? <CityList /> : null}
+        <Switch>
+          <Route path={'/forecast'}>
+
+          </Route>
+          <Route exact path={'/'} >
+            {weather && <WeatherCard />}
+            {popularWeather ? <CityList /> : null}
+          </Route>
+        </Switch>
       </div>
     </div>
   );

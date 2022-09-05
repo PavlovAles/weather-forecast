@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { roundToDec } from '../../utils/utils';
+import { NavLink } from 'react-router-dom';
 import styles from './WeatherCard.module.css';
 import windIconPath from '../../images/wind.svg';
 import windDirectionPath from '../../images/wind_direction.svg';
@@ -50,6 +51,7 @@ function WeatherCard() {
           <p className={styles.subtext}>{`${weather_main.pressure} мм рт. ст.`}</p>
         </div>
       </div>
+      <NavLink className={styles.link} to={'/forecast'}>Смотреть прогноз...</NavLink>
     </div >
   )
 }

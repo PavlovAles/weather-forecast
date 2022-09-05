@@ -1,3 +1,5 @@
+@import url(../../vars.css);
+
 .container {
   min-width: 283px;
   padding: 24px;
@@ -24,11 +26,28 @@
 .list {
   margin: 12px 0 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   list-style: none;
 }
 
 .city_group {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 8px;
+  transition: border 0.2s;
+}
+
+.city_group:hover {
+  border: 1px solid var(--secondary);
+}
+
+.link {
+  color: var(--primary);
+  text-decoration: none;
 }

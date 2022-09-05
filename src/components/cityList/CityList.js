@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { roundToDec } from '../../utils/utils';
 import styles from './CityList.module.css';
 
@@ -12,11 +13,13 @@ function CityList() {
       <h3 className={styles.title}>Погода городах России</h3>
       <ul className={styles.list}>
         {popularWeather.map((city) => (
-          <li className={styles.city_group} key={city.sys.id}>
-            <img className={styles.icon} src={`http://openweathermap.org/img/wn/${city.weather[0].icon}.png`} alt='Иконка погоды' />
-            <p className={styles.subtext}>{`${roundToDec(city.main.temp)}°`}</p>
-            <h4 className={styles.subtext}>{city.name}</h4>
-          </li>
+          <NavLink className={styles.link} to='/forecast' key={city.sys.id}>
+            <li className={styles.city_group}>
+              <img className={styles.icon} src={`http://openweathermap.org/img/wn/${city.weather[0].icon}.png`} alt='Иконка погоды' />
+              <p className={styles.subtext}>{`${roundToDec(city.main.temp)}°`}</p>
+              <h4 className={styles.subtext}>{city.name}</h4>
+            </li>
+          </NavLink>
         ))}
       </ul>
     </div >
