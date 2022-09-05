@@ -21,7 +21,7 @@ export const getLocationAndCurrentWeather = createAsyncThunk(
 export const getWeather = createAsyncThunk(
   'weather/getWeather',
   async function (city, { dispatch, rejectWithValue }) {
-    dispatch(setCity({ name: city.label, coord: city.coord }))
+    dispatch(setCity({ city }))
     try {
       const [weather, forecast] = await fetchWeather(city.coord);
       return { weather, forecast };
@@ -54,7 +54,7 @@ const weatherSlice = createSlice({
   },
   reducers: {
     setCity(state, action) {
-      state.city = action.payload;
+      state.city = action.payload.city;
     }
   },
   extraReducers: {
@@ -62,7 +62,7 @@ const weatherSlice = createSlice({
       state.forecast = [];
     },
     [getWeather.fulfilled]: (state, action) => {
-      state.forecast = action.payload.weather;
+      state.weather = action.payload.weather;
       state.forecast = action.payload.forecast;
     },
     [getWeather.rejected]: (state, action) => {
