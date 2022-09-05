@@ -31,7 +31,7 @@ function App() {
       <div className={styles.content}>
         <Switch>
           <Route path={'/forecast'}>
-            <Forecast />
+            {weather && <Forecast />}
           </Route>
           <Route exact path={'/'} >
             {weather && <WeatherCard />}

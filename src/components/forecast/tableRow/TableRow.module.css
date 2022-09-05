@@ -1,0 +1,39 @@
+.subtext {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.description {
+  margin: 0;
+  max-width: min-content;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.additional__group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.additional__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.windDirection {
+  width: 12px;
+  height: 24px;
+  transform-origin: center;
+}
+
+.feelsLike {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: rgb(132, 132, 132);
+}
