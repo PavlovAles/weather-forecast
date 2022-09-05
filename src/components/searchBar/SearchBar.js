@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import { cities } from '../../cities';
 import { useDispatch } from 'react-redux';
-import { fetchCurrentWeather } from '../../store/weatherSlice';
+import { getWeather } from '../../store/weatherSlice';
 
 function SearchBar() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function SearchBar() {
 
   return (
     <Select
-      onChange={(value) => dispatch(fetchCurrentWeather(value))}
+      onChange={(value) => dispatch(getWeather(value))}
       options={cities}
       placeholder='Город'
       styles={styleWidth}

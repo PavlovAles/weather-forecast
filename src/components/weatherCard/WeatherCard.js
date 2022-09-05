@@ -25,7 +25,7 @@ function WeatherCard() {
   return (
     <NavLink className={styles.container} to={'/forecast'} ref={containerRef}>
       <div className={styles.heading}>
-        <h2 className={styles.title}>{city}</h2>
+        <h2 className={styles.title}>{city.name}</h2>
         <p className={styles.subtext}>{date}</p>
       </div>
       <div className={styles.summary}>

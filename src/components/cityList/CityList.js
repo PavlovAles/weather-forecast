@@ -6,13 +6,13 @@ import { roundToDec } from '../../utils/utils';
 import styles from './CityList.module.css';
 
 function CityList() {
-  const popularWeather = useSelector(state => state.weather.popularWeather);
+  const bigCitiesWeather = useSelector(state => state.weather.bigCitiesWeather);
 
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>Погода городах России</h3>
       <ul className={styles.list}>
-        {popularWeather.map((city) => (
+        {bigCitiesWeather.map((city) => (
           <NavLink className={styles.link} to='/forecast' key={city.sys.id}>
             <li className={styles.city_group}>
               <img className={styles.icon} src={`http://openweathermap.org/img/wn/${city.weather[0].icon}.png`} alt='Иконка погоды' />
