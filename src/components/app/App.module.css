@@ -1,11 +1,13 @@
 @import url(../../vendor/normalize.css);
 @import url(../../vendor/fonts/Inter/inter.css);
+@import url(../../vars.css);
 
 body {
   margin: 0;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--primary);
   background-color: #ECEEF2;
 }
 
