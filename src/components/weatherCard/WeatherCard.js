@@ -23,7 +23,7 @@ function WeatherCard() {
   date = date.toLocaleString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 
   return (
-    <div className={styles.container} ref={containerRef}>
+    <NavLink className={styles.container} to={'/forecast'} ref={containerRef}>
       <div className={styles.heading}>
         <h2 className={styles.title}>{city}</h2>
         <p className={styles.subtext}>{date}</p>
@@ -51,8 +51,7 @@ function WeatherCard() {
           <p className={styles.subtext}>{`${weather_main.pressure} мм рт. ст.`}</p>
         </div>
       </div>
-      <NavLink className={styles.link} to={'/forecast'}>Смотреть прогноз...</NavLink>
-    </div >
+    </NavLink>
   )
 }
 
