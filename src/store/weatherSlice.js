@@ -130,7 +130,6 @@ const weatherSlice = createSlice({
     ///////
     [fetchLocationAndWeather.pending]: (state) => { },
     [fetchLocationAndWeather.fulfilled]: (state, action) => {
-      console.log('in fulfilled')
       state.city = action.payload.city;
       state.weather = action.payload.weather;
     },
