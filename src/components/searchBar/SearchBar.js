@@ -4,8 +4,6 @@ import { cities } from '../../cities';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentWeather } from '../../store/weatherSlice';
 
-const cityListOrdered = cities.sort((a, b) => a.label.localeCompare(b.label));
-
 function SearchBar() {
   const dispatch = useDispatch();
 
@@ -20,7 +18,7 @@ function SearchBar() {
   return (
     <Select
       onChange={(value) => dispatch(fetchCurrentWeather(value))}
-      options={cityListOrdered}
+      options={cities}
       placeholder='Город'
       styles={styleWidth}
     />
