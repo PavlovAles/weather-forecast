@@ -1,18 +1,14 @@
 import React, { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { roundToDec } from '../../utils/utils';
-import { NavLink } from 'react-router-dom';
 import styles from './WeatherCard.module.css';
 import windIconPath from '../../images/wind.svg';
 import windDirectionPath from '../../images/wind_direction.svg';
 import dropIconPath from '../../images/drop.svg';
 import gaugeIconPath from '../../images/gauge.svg';
 import { useContainerDimensions } from '../../hooks/useContainerDimensions';
-import { getWeather } from '../../store/weatherSlice';
 
 function WeatherCard() {
-  const dispatch = useDispatch();
-
   const containerRef = useRef();
   const { width } = useContainerDimensions(containerRef);
 
@@ -25,12 +21,8 @@ function WeatherCard() {
   let date = new Date(weather.dt * 1000);
   date = date.toLocaleString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 
-  function handleLinkClick(city) {
-    dispatch(getWeather({ name: city.name, coord: city.coord}));
-  }
-
   return (
-    <NavLink className={styles.container} to={'/forecast'} ref={containerRef} onClick={() => handleLinkClick(city)}>
+    <div className={styles.container} ref={containerRef}>
       <div className={styles.heading}>
         <h2 className={styles.title}>{city.name}</h2>
         <p className={styles.subtext}>{date}</p>
@@ -58,7 +50,7 @@ function WeatherCard() {
           <p className={styles.subtext}>{`${weather_main.pressure} мм рт. ст.`}</p>
         </div>
       </div>
-    </NavLink>
+    </div>
   )
 }
 
