@@ -5,6 +5,7 @@ import { getLocationAndCurrentWeather, getBigCitiesWeather, getWeather } from '.
 import styles from './App.module.css';
 import Header from '../header/Header';
 import WeatherCard from '../weatherCard/WeatherCard';
+import Spinner from '../spinner/Spinner';
 import CityList from '../cityList/CityList';
 import Forecast from '../forecast/Forecast';
 
@@ -16,38 +17,34 @@ function App() {
   const city = useSelector(state => state.weather.city);
 
   function handleLinkClick(city) {
-    dispatch(getWeather({ name: city.name, coord: city.coord}));
+    dispatch(getWeather({ name: city.name, coord: city.coord }));
   }
 
   useEffect(() => {
     dispatch(getBigCitiesWeather());
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         dispatch(getLocationAndCurrentWeather(position.coords))
       });
     }
-
   }, [dispatch])
 
   return (
     <div className={styles.page}>
       <Header />
-      <div className={styles.content}>
+      { <div className={styles.content}>
         <Switch>
           <Route path={'/forecast'}>
-            {weather && <Forecast />}
+          {weather && <Forecast weather={weather} city={city.name} />}
           </Route>
           <Route exact path={'/'} >
-            {weather &&
-            <NavLink className={styles.linkContainer} to={'/forecast'} >
-              <WeatherCard onClick={() => handleLinkClick(city)} />
-            </NavLink>
-            }
-            {bigCitiesWeather ? <CityList /> : null}
+            {weather && <NavLink className={styles.linkContainer} to={'/forecast'} onClick={() => handleLinkClick(city)}>
+              <WeatherCard weather={weather} city={city.name} />
+            </NavLink>}
+            {bigCitiesWeather && <CityList />}
           </Route>
         </Switch>
-      </div>
+      </div>}
     </div>
   );
 }

@@ -1,19 +1,16 @@
 import React, { useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useContainerDimensions } from '../../hooks/useContainerDimensions';
 import { roundToDec } from '../../utils/utils';
+
 import styles from './WeatherCard.module.css';
 import windIconPath from '../../images/wind.svg';
 import windDirectionPath from '../../images/wind_direction.svg';
 import dropIconPath from '../../images/drop.svg';
 import gaugeIconPath from '../../images/gauge.svg';
-import { useContainerDimensions } from '../../hooks/useContainerDimensions';
 
-function WeatherCard() {
+function WeatherCard({ weather, city }) {
   const containerRef = useRef();
   const { width } = useContainerDimensions(containerRef);
-
-  const city = useSelector(state => state.weather.city);
-  const weather = useSelector(state => state.weather.weather);
 
   const weather_weather = weather.weather[0];
   const weather_main = weather.main;
@@ -24,7 +21,7 @@ function WeatherCard() {
   return (
     <div className={styles.container} ref={containerRef}>
       <div className={styles.heading}>
-        <h2 className={styles.title}>{city.name}</h2>
+        <h2 className={styles.title}>{city}</h2>
         <p className={styles.subtext}>{date}</p>
       </div>
       <div className={styles.summary}>

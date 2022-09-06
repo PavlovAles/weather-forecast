@@ -4,14 +4,13 @@ import WeatherCard from '../weatherCard/WeatherCard';
 import styles from './Forecast.module.css';
 import TableRow from './tableRow/TableRow';
 
-function Forecast() {
+function Forecast({ weather, city }) {
 
-  const weather = useSelector(state => state.weather.weather);
   const forecast = useSelector(state => state.weather.forecast);
 
   return (
     <section className={styles.container}>
-      {weather && <WeatherCard />}
+      <WeatherCard weather={weather} city={city} />
       <table className={styles.table} >
         <tbody>
           <tr>
@@ -28,7 +27,7 @@ function Forecast() {
               Влажность
             </th>
           </tr>
-          {forecast.map((forecast) => <TableRow weather={forecast} key={forecast.dt}/>)}
+          {forecast.map((dayForecast) => <TableRow weather={dayForecast} key={dayForecast.dt}/>)}
         </tbody>
       </table>
     </section>
