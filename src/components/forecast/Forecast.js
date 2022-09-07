@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import WeatherCard from '../weatherCard/WeatherCard';
 import styles from './Forecast.module.css';
 import TableRow from './tableRow/TableRow';
+import TempChart from './tempChart/TempChart';
 
 function Forecast({ weather, city }) {
 
@@ -11,6 +12,7 @@ function Forecast({ weather, city }) {
   return (
     <section className={styles.container}>
       <WeatherCard weather={weather} city={city} />
+      <TempChart forecast={forecast} />
       <table className={styles.table} >
         <tbody>
           <tr>
