@@ -5,7 +5,6 @@ import { getLocationAndCurrentWeather, getBigCitiesWeather, getWeather } from '.
 import styles from './App.module.css';
 import Header from '../header/Header';
 import WeatherCard from '../weatherCard/WeatherCard';
-import Spinner from '../spinner/Spinner';
 import CityList from '../cityList/CityList';
 import Forecast from '../forecast/Forecast';
 
@@ -22,7 +21,10 @@ function App() {
 
   useEffect(() => {
     dispatch(getBigCitiesWeather());
-    if (navigator.geolocation) {
+    if (city) {
+      dispatch(getWeather(city));
+    }
+    if (!city && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         dispatch(getLocationAndCurrentWeather(position.coords))
       });

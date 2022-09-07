@@ -43,10 +43,12 @@ export const getBigCitiesWeather = createAsyncThunk(
   }
 )
 
+const savedCity = JSON.parse(localStorage.getItem('city'));
+
 const weatherSlice = createSlice({
   name: 'weather',
   initialState: {
-    city: null,
+    city: savedCity,
     forecast: [],
     weather: null,
     bigCitiesWeather: null,
