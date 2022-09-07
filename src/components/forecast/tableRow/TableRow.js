@@ -1,11 +1,15 @@
 import React from 'react';
 import styles from './TableRow.module.css';
+import useWindowWidth from '../../../hooks/useWindowWidth';
+import { roundToDec } from '../../../utils/utils';
+
 import windIconPath from '../../../images/wind.svg';
 import windDirectionPath from '../../../images/wind_direction.svg';
 import dropIconPath from '../../../images/drop.svg';
-import { roundToDec } from '../../../utils/utils';
 
 function TableRow({ weather }) {
+  const windowWidth = useWindowWidth();
+
   const weather_weather = weather.weather[0];
 
   let date = new Date(weather.dt * 1000);
@@ -14,7 +18,7 @@ function TableRow({ weather }) {
   return (
     <tr className={styles.tableRow}>
       <td>
-        <p className={styles.subtext}>{date}</p>
+        <p className={styles.date}>{date}</p>
       </td>
       <td>
         <div className={styles.additional__group}>
@@ -23,22 +27,22 @@ function TableRow({ weather }) {
             <p className={styles.subtext}>{`${roundToDec(weather.main.temp)}°`}</p>
             <p className={styles.feelsLike}>{`${roundToDec(weather.main.feels_like)}°`}</p>
           </div>
-          <p className={styles.description}>{weather_weather.description}</p>
+          {(windowWidth > 460) && <p className={styles.description}>{weather_weather.description}</p>}
         </div>
       </td>
       <td>
         <div className={styles.additional__group}>
           <img className={styles.additional__icon} src={windIconPath} alt='Ветер' />
-          <p className={styles.subtext}>{`${weather.wind.speed} м/с,`}</p>
+          <p className={styles.subtext}>{`${roundToDec(weather.wind.speed)} м/с`}</p>
           <img className={styles.windDirection} style={{ transform: `rotate(${weather.wind.deg}deg)` }} src={windDirectionPath} alt='Направление ветра' />
         </div>
       </td>
-      <td>
+      {(windowWidth > 600) && <td>
         <div className={styles.additional__group}>
           <img className={styles.additional__icon} src={dropIconPath} alt='Влажность' />
           <p className={styles.subtext}>{`${weather.main.humidity}%`}</p>
         </div>
-      </td>
+      </td>}
     </tr>
   )
 }

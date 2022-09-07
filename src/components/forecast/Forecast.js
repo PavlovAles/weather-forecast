@@ -1,13 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import useWindowWidth from '../../hooks/useWindowWidth';
 import WeatherCard from '../weatherCard/WeatherCard';
 import styles from './Forecast.module.css';
 import TableRow from './tableRow/TableRow';
 import TempChart from './tempChart/TempChart';
 
 function Forecast({ weather, city }) {
-
   const forecast = useSelector(state => state.weather.forecast);
+  const windowWidth = useWindowWidth();
 
   return (
     <section className={styles.container}>
@@ -25,9 +26,9 @@ function Forecast({ weather, city }) {
             <th className={styles.tableHeading}>
               Ветер
             </th>
-            <th className={styles.tableHeading}>
+            {(windowWidth > 600) && <th className={styles.tableHeading}>
               Влажность
-            </th>
+            </th>}
           </tr>
           {forecast.map((dayForecast) => <TableRow weather={dayForecast} key={dayForecast.dt}/>)}
         </tbody>

@@ -5,6 +5,14 @@
   font-weight: 400;
 }
 
+.date {
+  margin: 0;
+  max-width: 64px;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
 .description {
   margin: 0;
   max-width: min-content;
