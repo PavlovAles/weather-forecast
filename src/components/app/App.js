@@ -37,11 +37,11 @@ function App() {
       { <div className={styles.content}>
         <Switch>
           <Route path={'/forecast'}>
-          {weather && <Forecast weather={weather} city={city.name} />}
+          {weather && <Forecast />}
           </Route>
           <Route exact path={'/'} >
             {weather && <NavLink className={styles.linkContainer} to={'/forecast'} onClick={() => handleLinkClick(city)}>
-              <WeatherCard weather={weather} city={city.name} />
+              <WeatherCard />
             </NavLink>}
             {bigCitiesWeather && <CityList />}
           </Route>

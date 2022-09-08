@@ -6,13 +6,13 @@ import styles from './Forecast.module.css';
 import TableRow from './tableRow/TableRow';
 import TempChart from './tempChart/TempChart';
 
-function Forecast({ weather, city }) {
+function Forecast() {
   const forecast = useSelector(state => state.weather.forecast);
   const windowWidth = useWindowWidth();
 
   return (
     <section className={styles.container}>
-      <WeatherCard weather={weather} city={city} />
+      <WeatherCard />
       <TempChart forecast={forecast} />
       <table className={styles.table} >
         <tbody>
@@ -30,7 +30,7 @@ function Forecast({ weather, city }) {
               Влажность
             </th>}
           </tr>
-          {forecast.map((dayForecast) => <TableRow weather={dayForecast} key={dayForecast.dt}/>)}
+          {forecast.map((dayForecast) => <TableRow weather={dayForecast} key={dayForecast.dt} />)}
         </tbody>
       </table>
     </section>

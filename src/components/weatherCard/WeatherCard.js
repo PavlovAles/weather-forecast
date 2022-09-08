@@ -7,10 +7,13 @@ import windIconPath from '../../images/wind.svg';
 import windDirectionPath from '../../images/wind_direction.svg';
 import dropIconPath from '../../images/drop.svg';
 import gaugeIconPath from '../../images/gauge.svg';
+import { useSelector } from 'react-redux';
 
-function WeatherCard({ weather, city }) {
+function WeatherCard() {
   const containerRef = useRef();
   const { width } = useContainerDimensions(containerRef);
+  const weather = useSelector(state => state.weather.weather);
+  const city = useSelector(state => state.weather.city);
 
   const weather_weather = weather.weather[0];
   const weather_main = weather.main;
@@ -18,7 +21,7 @@ function WeatherCard({ weather, city }) {
   return (
     <div className={styles.container} ref={containerRef}>
       <div className={styles.heading}>
-        <h2 className={styles.title}>{city}</h2>
+        <h2 className={styles.title}>{city.name}</h2>
         <p className={styles.subtext}>{getReadableLocalTime(weather.timezone)}</p>
       </div>
       <div className={styles.summary}>
