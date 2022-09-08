@@ -21,7 +21,7 @@ function CityList() {
         {bigCitiesWeather.map((city) => (
           <NavLink className={styles.link} to='/forecast' key={city.sys.id} onClick={() => handleLinkClick(city)}>
             <li className={styles.city_group}>
-              <img className={styles.icon} src={`http://openweathermap.org/img/wn/${city.weather[0].icon}.png`} alt='Иконка погоды' />
+              <img className={styles.icon} src={`https://openweathermap.org/img/wn/${city.weather[0].icon}.png`} alt='Иконка погоды' />
               <p className={styles.subtext}>{`${roundToDec(city.main.temp)}°`}</p>
               <h4 className={styles.subtext}>{city.name}</h4>
             </li>

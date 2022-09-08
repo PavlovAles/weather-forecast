@@ -22,7 +22,7 @@ function TableRow({ weather }) {
       </td>
       <td>
         <div className={styles.additional__group}>
-          <img className={styles.icon} src={`http://openweathermap.org/img/wn/${weather_weather.icon}.png`} alt='Иконка погоды' />
+          <img className={styles.icon} src={`https://openweathermap.org/img/wn/${weather_weather.icon}.png`} alt='Иконка погоды' />
           <div className={styles.tempContainer}>
             <p className={styles.subtext}>{`${roundToDec(weather.main.temp)}°`}</p>
             <p className={styles.feelsLike}>{`${roundToDec(weather.main.feels_like)}°`}</p>

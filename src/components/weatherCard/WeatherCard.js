@@ -23,7 +23,7 @@ function WeatherCard({ weather, city }) {
       </div>
       <div className={styles.summary}>
         <p className={styles.currentTemp}>{`${roundToDec(weather_main.temp)}°`}</p>
-        <img className={styles.icon} src={`http://openweathermap.org/img/wn/${weather_weather.icon}@2x.png`} alt='Иконка погоды' />
+        <img className={styles.icon} src={`https://openweathermap.org/img/wn/${weather_weather.icon}@2x.png`} alt='Иконка погоды' />
         <div className={styles.description}>
           <p className={styles.subtext}>{weather_weather.description}</p>
           <p className={styles.subtext}>{`по ощущениям ${roundToDec(weather_main.feels_like)}°`}</p>
