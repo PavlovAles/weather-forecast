@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import { cities } from '../../cities';
+import { cities } from '../../utils/cities';
 import { useDispatch, useSelector } from 'react-redux';
 import { getWeather } from '../../store/weatherSlice';
 
