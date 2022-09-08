@@ -9,7 +9,7 @@ function SearchBar() {
   const city = useSelector(state => state.weather.city);
 
   const styleWidth = {
-    container: (provided, state) => ({
+    container: (provided) => ({
       ...provided,
       width: '100%',
       maxWidth: '703px',
@@ -22,6 +22,7 @@ function SearchBar() {
       onChange={(value) => dispatch(getWeather({ name: value.label, coord: value.coord }))}
       options={cities}
       placeholder='Город'
+      noOptionsMessage={() => 'Ничего не найдено'}
       styles={styleWidth}
     />
   )
