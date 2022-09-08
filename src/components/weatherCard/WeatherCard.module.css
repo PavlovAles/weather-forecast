@@ -1,4 +1,4 @@
-@import url(../../vars.css);
+@import url(../../utils/vars.css);
 
 .container {
   min-width: 230px;
