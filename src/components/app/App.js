@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLocationAndCurrentWeather, getBigCitiesWeather, getWeather } from '../../store/weatherSlice';
 import styles from './App.module.css';
@@ -40,9 +40,9 @@ function App() {
           {weather && <Forecast />}
           </Route>
           <Route exact path={'/'} >
-            {weather && <NavLink className={styles.linkContainer} to={'/forecast'} onClick={() => handleLinkClick(city)}>
+            {weather && <Link className={styles.linkContainer} to={'/forecast'} onClick={() => handleLinkClick(city)}>
               <WeatherCard />
-            </NavLink>}
+            </Link>}
             {bigCitiesWeather && <CityList />}
           </Route>
         </Switch>
