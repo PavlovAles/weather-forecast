@@ -26,7 +26,10 @@ function WeatherCard() {
       </div>
       <div className={styles.summary}>
         <p className={styles.currentTemp}>{`${roundToDec(weather_main.temp)}°`}</p>
-        <img className={styles.icon} src={`https://openweathermap.org/img/wn/${weather_weather.icon}@2x.png`} alt='Иконка погоды' />
+        <img className={styles.icon}
+          src={`https://openweathermap.org/img/wn/${weather_weather.icon}@2x.png`}
+          alt='Иконка погоды'
+        />
         <div className={styles.description}>
           <p className={styles.subtext}>{weather_weather.description}</p>
           <p className={styles.subtext}>{`по ощущениям ${roundToDec(weather_main.feels_like)}°`}</p>
@@ -36,7 +39,12 @@ function WeatherCard() {
         <div className={styles.additional__group}>
           <img className={styles.additional__icon} src={windIconPath} alt='Ветер' />
           <p className={styles.subtext}>{`${weather.wind.speed} м/с,`}</p>
-          <img className={styles.windDirection} style={{ transform: `rotate(${weather.wind.deg}deg)` }} src={windDirectionPath} alt='Направление ветра' />
+          <img
+            className={styles.additional__windDirection}
+            style={{ transform: `rotate(${weather.wind.deg}deg)` }}
+            src={windDirectionPath}
+            alt='Направление ветра'
+          />
         </div>
         <div className={styles.additional__group}>
           <img className={styles.additional__icon} src={dropIconPath} alt='Влажность' />

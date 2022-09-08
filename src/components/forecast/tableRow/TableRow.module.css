@@ -1,3 +1,7 @@
+.icon {
+  filter: brightness(.95);
+}
+
 .subtext {
   margin: 0;
   font-size: 14px;
@@ -32,7 +36,7 @@
   height: 24px;
 }
 
-.windDirection {
+.additional__windDirection {
   width: 12px;
   height: 24px;
   transform-origin: center;

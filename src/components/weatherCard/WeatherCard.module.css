@@ -33,12 +33,14 @@
 
 .currentTemp {
   font-size: 28px;
+  line-height: 1;
   font-weight: 500;
 }
 
 .icon {
   width: 100px;
   height: 100px;
+  filter: brightness(.95);
 }
 
 .additional {
@@ -59,7 +61,7 @@
   height: 24px;
 }
 
-.windDirection {
+.additional__windDirection {
   width: 12px;
   height: 24px;
   transform-origin: center;
