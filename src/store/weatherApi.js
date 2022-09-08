@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://api.openweathermap.org';
+const BASE_URL = 'https://api.openweathermap.org';
 const queryParams = {
   appid: 'b18902f68153db12e44ee147bb59bcf2',
   units: 'metric',
