@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { getWeather } from '../../store/weatherSlice';
 
 export default function MySearchBar() {
-  const [input, setInput] = useState('');
+  const [inputValue, setInputValue] = useState('');
   const [showDropDown, setShowDropDown] = useState(false);
   const [options, setOptions] = useState(cities);
   const [activeOption, setActiveOption] = useState(-1);
@@ -14,7 +14,7 @@ export default function MySearchBar() {
 
   function closeAndReset() {
     setShowDropDown(false);
-    setInput('');
+    setInputValue('');
     setOptions(cities);
     setActiveOption(-1);
   }
@@ -55,7 +55,7 @@ export default function MySearchBar() {
   }
 
   function handleChange(e) {
-    setInput(e.target.value);
+    setInputValue(e.target.value);
     const input = e.target.value.toLowerCase();
     if (!input) {
       setOptions(cities);
@@ -66,6 +66,13 @@ export default function MySearchBar() {
     setOptions(filteredOptions);
     setActiveOption(0);
     setShowDropDown(true);
+
+    console.log(`
+    event: ${e}
+    target: ${e.target}
+    value: ${e.target.value}
+    inputState: ${inputValue}
+    `);
   }
 
   function handleOptionClick(e) {
@@ -81,7 +88,7 @@ export default function MySearchBar() {
     <div className={styles.searchBar}>
       <input
         className={styles.searchBarInput}
-        value={input}
+        value={inputValue}
         type='text'
         placeholder='Город'
         onClick={handleInputClick}
