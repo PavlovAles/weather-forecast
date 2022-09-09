@@ -21,7 +21,7 @@ export const getLocationAndCurrentWeather = createAsyncThunk(
 export const getWeather = createAsyncThunk(
   'weather/getWeather',
   async function (city, { dispatch, rejectWithValue }) {
-    dispatch(setCity({ city }))
+    dispatch(setCity({ city }));
     try {
       const [weather, forecast] = await fetchWeather(city.coord);
       return { weather, forecast };
@@ -51,7 +51,9 @@ const weatherSlice = createSlice({
     city: savedCity,
     forecast: [],
     weather: null,
+    weatherLoading: true,
     bigCitiesWeather: null,
+    bigCitiesLoading: true,
     error: null,
   },
   reducers: {
@@ -62,10 +64,12 @@ const weatherSlice = createSlice({
   extraReducers: {
     [getWeather.pending]: (state) => {
       state.forecast = [];
+      state.weatherLoading = true;
     },
     [getWeather.fulfilled]: (state, action) => {
       state.weather = action.payload.weather;
       state.forecast = action.payload.forecast;
+      state.weatherLoading = false;
     },
     [getWeather.rejected]: (state, action) => {
       state.error = action.payload;
@@ -81,6 +85,7 @@ const weatherSlice = createSlice({
         }
       };
       state.weather = action.payload.weather;
+      state.weatherLoading = false;
     },
     [getLocationAndCurrentWeather.rejected]: (state, action) => {
       state.error = action.payload;
@@ -91,6 +96,7 @@ const weatherSlice = createSlice({
     },
     [getBigCitiesWeather.fulfilled]: (state, action) => {
       state.bigCitiesWeather = action.payload;
+      state.bigCitiesLoading = false;
     },
     [getBigCitiesWeather.rejected]: (state, action) => {
       state.error = action.payload;

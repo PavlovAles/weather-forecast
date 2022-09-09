@@ -11,8 +11,8 @@ import Forecast from '../forecast/Forecast';
 function App() {
   const dispatch = useDispatch();
 
-  const weather = useSelector(state => state.weather.weather);
-  const bigCitiesWeather = useSelector(state => state.weather.bigCitiesWeather);
+  const weatherLoading = useSelector(state => state.weather.weatherLoading);
+  const bigCitiesLoading = useSelector(state => state.weather.bigCitiesLoading);
   const city = useSelector(state => state.weather.city);
 
   function handleLinkClick(city) {
@@ -29,7 +29,7 @@ function App() {
         dispatch(getLocationAndCurrentWeather(position.coords))
       });
     }
-  }, [dispatch])
+  }, [])
 
   return (
     <div className={styles.page}>
@@ -37,13 +37,13 @@ function App() {
       { <div className={styles.content}>
         <Switch>
           <Route path={'/forecast'}>
-          {weather && <Forecast />}
+          {!weatherLoading && <Forecast />}
           </Route>
           <Route exact path={'/'} >
-            {weather && <Link className={styles.linkContainer} to={'/forecast'} onClick={() => handleLinkClick(city)}>
+            {!weatherLoading && <Link className={styles.linkContainer} to={'/forecast'} onClick={() => handleLinkClick(city)}>
               <WeatherCard />
             </Link>}
-            {bigCitiesWeather && <CityList />}
+            {!bigCitiesLoading && <CityList />}
           </Route>
         </Switch>
       </div>}
