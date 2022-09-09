@@ -62,17 +62,10 @@ export default function MySearchBar() {
       setActiveOption(0);
       return;
     }
-    const filteredOptions = cities.filter(city => city.label.toLowerCase().includes(e.target.value));
+    const filteredOptions = cities.filter(city => city.label.toLowerCase().includes(input));
     setOptions(filteredOptions);
     setActiveOption(0);
     setShowDropDown(true);
-
-    console.log(`
-    event: ${e}
-    target: ${e.target}
-    value: ${e.target.value}
-    inputState: ${inputValue}
-    `);
   }
 
   function handleOptionClick(e) {
