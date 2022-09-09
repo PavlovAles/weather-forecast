@@ -7,6 +7,7 @@ import Header from '../header/Header';
 import WeatherCard from '../weatherCard/WeatherCard';
 import CityList from '../cityList/CityList';
 import Forecast from '../forecast/Forecast';
+import Footer from '../footer/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -34,10 +35,10 @@ function App() {
   return (
     <div className={styles.page}>
       <Header />
-      { <div className={styles.content}>
+      <div className={styles.content}>
         <Switch>
           <Route path={'/forecast'}>
-          {!weatherLoading && <Forecast />}
+            {!weatherLoading && <Forecast />}
           </Route>
           <Route exact path={'/'} >
             {!weatherLoading && <Link className={styles.linkContainer} to={'/forecast'} onClick={() => handleLinkClick(city)}>
@@ -46,7 +47,8 @@ function App() {
             {!bigCitiesLoading && <CityList />}
           </Route>
         </Switch>
-      </div>}
+      </div>
+      <Footer />
     </div>
   );
 }
