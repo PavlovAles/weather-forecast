@@ -1,24 +1,25 @@
 {
   "files": {
-    "main.css": "/weather-forecast/static/css/main.2efdd4d7.css",
-    "main.js": "/weather-forecast/static/js/main.a659c63a.js",
+    "main.css": "/weather-forecast/static/css/main.4f684fde.css",
+    "main.js": "/weather-forecast/static/js/main.1eec3ce4.js",
     "static/media/Inter-Medium.woff?v=3.19": "/weather-forecast/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
     "static/media/Inter-Black.woff?v=3.19": "/weather-forecast/static/media/Inter-Black.c6938660eec019fefd68.woff",
     "static/media/Inter-Regular.woff?v=3.19": "/weather-forecast/static/media/Inter-Regular.8c206db99195777c6769.woff",
     "static/media/Inter-Medium.woff2?v=3.19": "/weather-forecast/static/media/Inter-Medium.293fd13dbca5a3e450ef.woff2",
     "static/media/Inter-Black.woff2?v=3.19": "/weather-forecast/static/media/Inter-Black.15ca31c0a2a68f76d2d1.woff2",
     "static/media/Inter-Regular.woff2?v=3.19": "/weather-forecast/static/media/Inter-Regular.c8ba52b05a9ef10f4758.woff2",
+    "static/media/openweather.jpeg": "/weather-forecast/static/media/openweather.3fef1020230798c8d15a.jpeg",
     "static/media/logo.svg": "/weather-forecast/static/media/logo.9d44fd8586552ab8440750f0d28fc149.svg",
     "static/media/wind.svg": "/weather-forecast/static/media/wind.c29a950e261a68d07d021334c1f29ade.svg",
     "index.html": "/weather-forecast/index.html",
     "static/media/drop.svg": "/weather-forecast/static/media/drop.56bbbfb8080e8936b12a602f5f0e6d0a.svg",
     "static/media/gauge.svg": "/weather-forecast/static/media/gauge.c917aad776b07bf37b6c45d5b7fa41c6.svg",
     "static/media/wind_direction.svg": "/weather-forecast/static/media/wind_direction.a504b762aa55ac27d2ffb61b57f38301.svg",
-    "main.2efdd4d7.css.map": "/weather-forecast/static/css/main.2efdd4d7.css.map",
-    "main.a659c63a.js.map": "/weather-forecast/static/js/main.a659c63a.js.map"
+    "main.4f684fde.css.map": "/weather-forecast/static/css/main.4f684fde.css.map",
+    "main.1eec3ce4.js.map": "/weather-forecast/static/js/main.1eec3ce4.js.map"
   },
   "entrypoints": [
-    "static/css/main.2efdd4d7.css",
-    "static/js/main.a659c63a.js"
+    "static/css/main.4f684fde.css",
+    "static/js/main.1eec3ce4.js"
   ]
 }
