@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import logoPath from '../../images/logo.svg'
-import SearchBar from '../searchBar/SearchBar';
+import MySearchBar from '../mySearchBar/MySearchBar';
 import styles from './Header.module.css';
 
 function Header() {
@@ -12,7 +12,7 @@ function Header() {
           <img className={styles.logo} src={logoPath} alt='Логотип' />
         </div>
       </Link>
-      <SearchBar />
+      <MySearchBar />
     </header>
   )
 }
