@@ -46,6 +46,13 @@
   cursor: pointer;
 }
 
+.searchBarOption_active {
+  font-size: 16px;
+  line-height: 1.2;
+  cursor: pointer;
+  background-color: #efefef;
+}
+
 .searchBarNoOption {
   cursor: default;
   color: #878787;

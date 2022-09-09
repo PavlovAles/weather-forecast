@@ -8,8 +8,16 @@ export default function MySearchBar() {
   const [input, setInput] = useState('');
   const [showDropDown, setShowDropDown] = useState(false);
   const [options, setOptions] = useState(cities);
+  const [activeOption, setActiveOption] = useState(-1);
 
   const dispatch = useDispatch();
+
+  function closeAndReset() {
+    setShowDropDown(false);
+    setInput('');
+    setOptions(cities);
+    setActiveOption(-1);
+  }
 
   function handleInputClick(e) {
     setShowDropDown(true);
@@ -27,12 +35,23 @@ export default function MySearchBar() {
     if (e.code === 'Escape') {
       closeAndReset();
     }
-  }
-
-  function closeAndReset() {
-    setShowDropDown(false);
-    setInput('');
-    setOptions(cities);
+    if (e.code === 'Enter') {
+      const city = options[activeOption];
+      dispatch(getWeather({ name: city.label, coord: city.coord }));
+      closeAndReset();
+    }
+    if (showDropDown && (e.code === 'ArrowDown' || e.code === 'ArrowUp')) {
+      const step = (e.code === 'ArrowDown') ? 1 : -1;
+      setActiveOption((prev) => {
+        if (prev < 0 || prev + step < 0) {
+          return 0;
+        }
+        if (prev + step === options.length) {
+          return options.length - 1;
+        }
+        return prev + step;
+      });
+    }
   }
 
   function handleChange(e) {
@@ -40,10 +59,13 @@ export default function MySearchBar() {
     const input = e.target.value.toLowerCase();
     if (!input) {
       setOptions(cities);
+      setActiveOption(0);
       return;
     }
     const filteredOptions = cities.filter(city => city.label.toLowerCase().includes(e.target.value));
     setOptions(filteredOptions);
+    setActiveOption(0);
+    setShowDropDown(true);
   }
 
   function handleOptionClick(e) {
@@ -68,9 +90,16 @@ export default function MySearchBar() {
       />
       {showDropDown &&
         <ul className={styles.searchBarDropDown} onClick={handleOptionClick}>
-          {options.map((option) => <li className={styles.searchBarOption} key={option.value}>{option.label}</li>)}
+          {options.map((option, ind) => {
+            return <li
+              className={(ind === activeOption) ? styles.searchBarOption_active : styles.searchBarOption}
+              key={option.value}>
+              {option.label}
+            </li>
+          })
+          }
           {!options.length && <li className={styles.searchBarNoOption}>Ничего не найдено</li>}
         </ul>}
-    </div>
+    </div >
   )
 }
