@@ -22,12 +22,6 @@ function App() {
   );
   const city = useSelector((state) => state.weather.city);
 
-  function handleLinkClick(selectedCity) {
-    dispatch(
-      setCityAndGetWeather({ name: selectedCity.name, coord: selectedCity.coord }),
-    );
-  }
-
   useEffect(() => {
     dispatch(getBigCitiesWeather());
     if (city) {
@@ -51,7 +45,7 @@ function App() {
               <Link
                 className={styles.linkContainer}
                 to="/forecast"
-                onClick={() => handleLinkClick(city)}
+                onClick={() => dispatch(setCityAndGetWeather(city))}
               >
                 <WeatherCard />
               </Link>

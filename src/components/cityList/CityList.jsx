@@ -11,10 +11,6 @@ function CityList() {
     (state) => state.weather.bigCitiesWeather,
   );
 
-  function handleLinkClick(city) {
-    dispatch(setCityAndGetWeather({ name: city.name, coord: city.coord }));
-  }
-
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>Погода городах России</h3>
@@ -22,17 +18,19 @@ function CityList() {
         {bigCitiesWeather.map((city) => (
           <Link
             className={styles.link}
-            to="/forecast"
+            to='/forecast'
             key={city.sys.id}
-            onClick={() => handleLinkClick(city)}
+            onClick={() => dispatch(setCityAndGetWeather(city))}
           >
             <li className={styles.city_group}>
               <img
                 className={styles.icon}
                 src={`https://openweathermap.org/img/wn/${city.weather[0].icon}.png`}
-                alt="Иконка погоды"
+                alt='Иконка погоды'
               />
-              <p className={styles.subtext}>{`${roundToDec(city.main.temp)}°`}</p>
+              <p className={styles.subtext}>
+                {`${roundToDec(city.main.temp)}°`}
+              </p>
               <h4 className={styles.subtext}>{city.name}</h4>
             </li>
           </Link>

@@ -37,7 +37,7 @@ export default function MySearchBar() {
     }
     if (e.code === 'Enter') {
       const city = options[activeOption];
-      dispatch(setCityAndGetWeather({ name: city.label, coord: city.coord }));
+      dispatch(setCityAndGetWeather(city));
       closeAndReset();
     }
     if (showDropDown && (e.code === 'ArrowDown' || e.code === 'ArrowUp')) {
@@ -62,7 +62,7 @@ export default function MySearchBar() {
       setActiveOption(0);
       return;
     }
-    const filteredOptions = cities.filter((city) => city.label.toLowerCase().includes(input));
+    const filteredOptions = cities.filter((city) => city.name.toLowerCase().includes(input));
     setOptions(filteredOptions);
     setActiveOption(0);
     setShowDropDown(true);
@@ -71,8 +71,8 @@ export default function MySearchBar() {
   function handleOptionClick(e) {
     if (e.target.classList[0].includes('searchBarOption')) {
       closeAndReset();
-      const city = options.find((i) => i.label === e.target.textContent);
-      dispatch(setCityAndGetWeather({ name: city.label, coord: city.coord }));
+      const city = options.find((i) => i.name === e.target.textContent);
+      dispatch(setCityAndGetWeather(city));
       setShowDropDown(false);
     }
   }
@@ -80,14 +80,14 @@ export default function MySearchBar() {
   function renderOption(option, ind) {
     return (
       <li
-        key={option.value}
+        key={option.id}
         className={
           ind === activeOption
             ? styles.searchBarOption_active
             : styles.searchBarOption
         }
       >
-        {option.label}
+        {option.name}
       </li>
     );
   }
@@ -97,8 +97,8 @@ export default function MySearchBar() {
       <input
         className={styles.searchBarInput}
         value={inputValue}
-        type="text"
-        placeholder="Город"
+        type='text'
+        placeholder='Город'
         onClick={handleInputClick}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
