@@ -19,7 +19,7 @@ function Forecast() {
       {!weatherLoading && (
         <>
           <WeatherCard />
-          <TempChart forecast={forecast} />
+          <TempChart />
           <table className={styles.table}>
             <tbody>
               <tr>

@@ -8,7 +8,7 @@ function Footer() {
       <img
         className={styles.logo}
         src={logoPath}
-        alt="Логотип OpenWeatherAPI"
+        alt='Логотип OpenWeatherAPI'
       />
       <p className={styles.text}>Алесь Павлов, 2022г.</p>
     </footer>

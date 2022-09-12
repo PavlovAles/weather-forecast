@@ -1,23 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   Tooltip,
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-function TempChart({ forecast }) {
+function TempChart() {
+  const forecast = useSelector((state) => state.weather.forecast);
+
   ChartJS.register(
     CategoryScale,
     LinearScale,
     PointElement,
     LineElement,
-    Title,
     Tooltip,
     Legend,
   );

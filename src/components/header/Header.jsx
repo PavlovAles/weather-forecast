@@ -7,10 +7,10 @@ import styles from './Header.module.css';
 function Header() {
   return (
     <header className={styles.header}>
-      <Link className={styles.link} to="/">
+      <Link className={styles.link} to='/'>
         <div className={styles.logoContainer}>
           <h1 className={styles.title}>Погода</h1>
-          <img className={styles.logo} src={logoPath} alt="Логотип" />
+          <img className={styles.logo} src={logoPath} alt='Логотип' />
         </div>
       </Link>
       <MySearchBar />

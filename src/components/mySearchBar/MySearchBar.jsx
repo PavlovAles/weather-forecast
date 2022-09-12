@@ -67,9 +67,7 @@ export default function MySearchBar() {
       setActiveOption(0);
       return;
     }
-    const filteredOptions = cities.filter((city) =>
-      city.name.toLowerCase().includes(input)
-    );
+    const filteredOptions = cities.filter((city) => city.name.toLowerCase().includes(input));
     setOptions(filteredOptions);
     setActiveOption(0);
     setShowDropDown(true);
@@ -109,7 +107,7 @@ export default function MySearchBar() {
         onKeyDown={handleKeyDown}
       />
       {showDropDown && (
-        <ul className={styles.searchBarDropDown} onClick={handleOptionClick}>
+        <ul className={styles.searchBarDropDown} onClick={handleOptionClick} role='presentation'>
           {options.map(renderOption)}
           {!options.length && (
             <li className={styles.searchBarNoOption}>Ничего не найдено</li>
