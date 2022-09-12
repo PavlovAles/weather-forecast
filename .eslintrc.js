@@ -18,5 +18,6 @@ module.exports = {
   ],
   rules: {
     'no-param-reassign': ['error', { props: false }],
+    'jsx-quotes': ['error', 'prefer-single'],
   },
 };
