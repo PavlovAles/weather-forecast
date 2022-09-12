@@ -1,6 +1,10 @@
 @import url(../../vendor/normalize.css);
 @import url(../../vendor/fonts/Inter/inter.css);
-@import url(../../utils/vars.css);
+
+:root {
+  --primary: #072445;
+  --secondary: #2164b0;
+}
 
 body {
   margin: 0;
