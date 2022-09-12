@@ -42,6 +42,9 @@ export default function MySearchBar() {
       dispatch(setCityAndGetWeather(city));
       closeAndReset();
     }
+    if (e.code === 'ArrowDown') {
+      setShowDropDown(true);
+    }
     if (showDropDown && (e.code === 'ArrowDown' || e.code === 'ArrowUp')) {
       const step = e.code === 'ArrowDown' ? 1 : -1;
       setActiveOption((prev) => {
@@ -58,7 +61,7 @@ export default function MySearchBar() {
 
   function handleChange(e) {
     setInputValue(e.target.value);
-    const input = e.target.value.toLowerCase();
+    const input = e.target.value.trim().toLowerCase();
     if (!input) {
       setOptions(cities);
       setActiveOption(0);
