@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getWeather } from '../../store/weatherSlice';
+import { setCityAndGetWeather } from '../../store/weatherSlice';
 import { roundToDec } from '../../utils/utils';
 import styles from './CityList.module.css';
 
@@ -12,7 +12,7 @@ function CityList() {
   );
 
   function handleLinkClick(city) {
-    dispatch(getWeather({ name: city.name, coord: city.coord }));
+    dispatch(setCityAndGetWeather({ name: city.name, coord: city.coord }));
   }
 
   return (

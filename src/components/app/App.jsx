@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getLocationAndCurrentWeather,
   getBigCitiesWeather,
-  getWeather,
+  setCityAndGetWeather,
 } from '../../store/weatherSlice';
 import styles from './App.module.css';
 import Header from '../header/Header';
@@ -24,14 +24,14 @@ function App() {
 
   function handleLinkClick(selectedCity) {
     dispatch(
-      getWeather({ name: selectedCity.name, coord: selectedCity.coord }),
+      setCityAndGetWeather({ name: selectedCity.name, coord: selectedCity.coord }),
     );
   }
 
   useEffect(() => {
     dispatch(getBigCitiesWeather());
     if (city) {
-      dispatch(getWeather(city));
+      dispatch(setCityAndGetWeather(city));
     }
     if (!city && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {

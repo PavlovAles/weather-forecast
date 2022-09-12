@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getWeather } from '../../store/weatherSlice';
+import { setCityAndGetWeather } from '../../store/weatherSlice';
 import cities from '../../utils/cities';
 import styles from './MySearchBar.module.css';
 
@@ -37,7 +37,7 @@ export default function MySearchBar() {
     }
     if (e.code === 'Enter') {
       const city = options[activeOption];
-      dispatch(getWeather({ name: city.label, coord: city.coord }));
+      dispatch(setCityAndGetWeather({ name: city.label, coord: city.coord }));
       closeAndReset();
     }
     if (showDropDown && (e.code === 'ArrowDown' || e.code === 'ArrowUp')) {
@@ -72,7 +72,7 @@ export default function MySearchBar() {
     if (e.target.classList[0].includes('searchBarOption')) {
       closeAndReset();
       const city = options.find((i) => i.label === e.target.textContent);
-      dispatch(getWeather({ name: city.label, coord: city.coord }));
+      dispatch(setCityAndGetWeather({ name: city.label, coord: city.coord }));
       setShowDropDown(false);
     }
   }
