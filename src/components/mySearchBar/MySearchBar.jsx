@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCityAndGetWeather } from '../../store/weatherSlice';
 import cities from '../../utils/cities';
@@ -9,6 +9,7 @@ export default function MySearchBar() {
   const [showDropDown, setShowDropDown] = useState(false);
   const [options, setOptions] = useState(cities);
   const [activeOption, setActiveOption] = useState(-1);
+  const ref = useRef();
 
   const dispatch = useDispatch();
 
@@ -19,17 +20,17 @@ export default function MySearchBar() {
     setActiveOption(-1);
   }
 
-  function handleClickOutside(e) {
-    if (!e.target.classList[0].includes('searchBar')) {
-      closeAndReset();
-      document.removeEventListener('click', handleClickOutside);
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (ref.current && !ref.current.contains(e.target)) {
+        closeAndReset();
+      }
     }
-  }
-
-  function handleInputClick() {
-    setShowDropDown(true);
     document.addEventListener('click', handleClickOutside);
-  }
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  });
 
   function handleKeyDown(e) {
     if (e.code === 'Escape') {
@@ -93,13 +94,13 @@ export default function MySearchBar() {
   }
 
   return (
-    <div className={styles.searchBar}>
+    <div className={styles.searchBar} ref={ref}>
       <input
         className={styles.searchBarInput}
         value={inputValue}
         type='text'
         placeholder='Город'
-        onClick={handleInputClick}
+        onClick={() => setShowDropDown(true)}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
