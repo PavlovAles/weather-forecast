@@ -1,46 +1,43 @@
-# Getting Started with Create React App and Redux
+# Прогноз погоды
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+Проект для прохождения на стажировку в компании [Lad](https://lad24.ru/)
 
-## Available Scripts
+Посмотреть результат можно [здесь](https://pavlovales.github.io/weather-forecast/)
 
-In the project directory, you can run:
+## Стек
 
-### `npm start`
+Проект реализован с использованием следующего стека технологий:
+- ReactJS
+- Функциональные компоненты, React-hooks
+- Модульные стили
+- Роутинг React-router-dom
+- ReduxToolKit, асинхронные экшены Redux-thunk
+- Работа с API с помощью клиента Axios
+- Для получения прогноза погоды используется OpenWeatherAPI
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="center">
+<img src="https://clck.ru/zRtMx" alt="Анимация с базовым функционалом"></p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Описание проекта
 
-### `npm test`
+В приложении всего две страницы: главная и страница с подробным прогнозом погоды
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Главная страница
+- На главной странице отображается текущая погода в городе пользователя и крупных городах России
+- При условии разрешения на определение геолокации посредством HTML Geolocation API производится запрос на определение текущего города пользователя и погоды в нем
+- Автоматически определенный или последний выбранный город сохраняется в local storage и используется при повторном посещении страницы
 
-### `npm run build`
+### Страница с подробным прогнозом
+- По клику на карточку текущего города или на город из списка крупных городов России, отображаемых на главной странице, открывается страница с подробным прогнозом погоды
+- Помимо основной информации о текущей погоде в городе, выводятся график температуры воздуха и информация на следующие шесть дней с интервалом в три часа
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Поле поиска
+- В шапке страницы расположено кастомное поле поиска
+- При клике по строке поиска разворачивается список из доступных городов, который фильтруется в зависимости от пользовательского ввода
+- Для выбора города и навигации по списку можно использовать клавиатуру или мышь
+-------
+### Собрать и запустить проект локально
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##### `npm i` – установить зависимости проекта
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+##### `npm start` – запуск сервера на http://localhost:3000/
