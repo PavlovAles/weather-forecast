@@ -32,7 +32,9 @@ function WeatherCard() {
             </p>
           </div>
           <div className={styles.summary}>
-            <p className={styles.currentTemp}>{`${roundToDec(main.temp)}°`}</p>
+            <p className={styles.currentTemp}>
+              {`${main.temp > 0 ? '+' : ''}${roundToDec(main.temp)}°`}
+            </p>
             <img
               className={styles.icon}
               src={`https://openweathermap.org/img/wn/${description.icon}@2x.png`}

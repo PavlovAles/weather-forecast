@@ -35,7 +35,7 @@ function CityList() {
                   alt='Иконка погоды'
                 />
                 <p className={styles.subtext}>
-                  {`${roundToDec(city.main.temp)}°`}
+                  {`${city.main.temp > 0 ? '+' : ''}${roundToDec(city.main.temp)}°`}
                 </p>
                 <h4 className={styles.subtext}>{city.name}</h4>
               </li>

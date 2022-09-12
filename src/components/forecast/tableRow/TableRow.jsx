@@ -11,6 +11,7 @@ function TableRow({ weather }) {
   const windowWidth = useWindowWidth();
 
   const description = weather.weather[0];
+  const main = weather.main;
 
   let date = new Date(weather.dt * 1000);
   date = date.toLocaleString([], {
@@ -30,13 +31,17 @@ function TableRow({ weather }) {
           <img
             className={styles.icon}
             src={`https://openweathermap.org/img/wn/${description.icon}.png`}
-            alt="Иконка погоды"
+            alt='Иконка погоды'
           />
           <div className={styles.tempContainer}>
-            <p className={styles.subtext}>{`${roundToDec(weather.main.temp)}°`}</p>
-            <p className={styles.feelsLike}>{`${roundToDec(weather.main.feels_like)}°`}</p>
+            <p className={styles.subtext}>
+              {`${main.temp > 0 ? '+' : ''}${roundToDec(main.temp)}°`}
+            </p>
+            <p className={styles.feelsLike}>
+              {`${main.feels_like > 0 ? '+' : ''}${roundToDec(main.feels_like)}°`}
+            </p>
           </div>
-          {windowWidth > 460 && (
+          {windowWidth > 480 && (
             <p className={styles.description}>{description.description}</p>
           )}
         </div>
@@ -46,14 +51,16 @@ function TableRow({ weather }) {
           <img
             className={styles.additional__icon}
             src={windIconPath}
-            alt="Ветер"
+            alt='Ветер'
           />
-          <p className={styles.subtext}>{`${roundToDec(weather.wind.speed)} м/с`}</p>
+          <p className={styles.subtext}>
+            {`${roundToDec(weather.wind.speed)} м/с`}
+          </p>
           <img
             className={styles.additional__windDirection}
             style={{ transform: `rotate(${weather.wind.deg}deg)` }}
             src={windDirectionPath}
-            alt="Направление ветра"
+            alt='Направление ветра'
           />
         </div>
       </td>
@@ -63,7 +70,7 @@ function TableRow({ weather }) {
             <img
               className={styles.additional__icon}
               src={dropIconPath}
-              alt="Влажность"
+              alt='Влажность'
             />
             <p className={styles.subtext}>{`${weather.main.humidity}%`}</p>
           </div>
