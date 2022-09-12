@@ -21,6 +21,7 @@ export const getLocationAndCurrentWeather = createAsyncThunk(
 export const setCityAndGetWeather = createAsyncThunk(
   'weather/setCityAndGetWeather',
   async (city, { dispatch, rejectWithValue }) => {
+    // eslint-disable-next-line no-use-before-define
     dispatch(setCity({ city }));
     try {
       const [weather, forecast] = await fetchWeather(city.coord);
