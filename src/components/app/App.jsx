@@ -14,13 +14,8 @@ import Forecast from '../forecast/Forecast';
 import Footer from '../footer/Footer';
 
 function App() {
-  const dispatch = useDispatch();
-
-  const weatherLoading = useSelector((state) => state.weather.weatherLoading);
-  const bigCitiesLoading = useSelector(
-    (state) => state.weather.bigCitiesLoading,
-  );
   const city = useSelector((state) => state.weather.city);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getBigCitiesWeather());
@@ -39,18 +34,20 @@ function App() {
       <Header />
       <div className={styles.content}>
         <Switch>
-          <Route path="/forecast">{!weatherLoading && <Forecast />}</Route>
-          <Route exact path="/">
-            {!weatherLoading && (
+          <Route path='/forecast'>
+            <Forecast />
+          </Route>
+          <Route exact path='/'>
+            {(city) && (
               <Link
                 className={styles.linkContainer}
-                to="/forecast"
+                to='/forecast'
                 onClick={() => dispatch(setCityAndGetWeather(city))}
               >
                 <WeatherCard />
               </Link>
             )}
-            {!bigCitiesLoading && <CityList />}
+            <CityList />
           </Route>
         </Switch>
       </div>
