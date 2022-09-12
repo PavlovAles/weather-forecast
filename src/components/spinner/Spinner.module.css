@@ -8,8 +8,14 @@
 }
 
 .spinner {
+  width: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.image {
   width: 50px;
-  align-self: center;
-  justify-self: center;
-  animation: spin 10s infinite;
+  animation: spin 7s linear infinite;
 }
