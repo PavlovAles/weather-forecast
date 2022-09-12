@@ -67,7 +67,9 @@ export default function MySearchBar() {
       setActiveOption(0);
       return;
     }
-    const filteredOptions = cities.filter((city) => city.name.toLowerCase().includes(input));
+    const filteredOptions = cities.filter((city) =>
+      city.name.toLowerCase().includes(input)
+    );
     setOptions(filteredOptions);
     setActiveOption(0);
     setShowDropDown(true);
@@ -86,11 +88,9 @@ export default function MySearchBar() {
     return (
       <li
         key={option.id}
-        className={
-          ind === activeOption
-            ? styles.searchBarOption_active
-            : styles.searchBarOption
-        }
+        className={`
+          ${styles.searchBarOption} 
+          ${ind === activeOption ? styles.searchBarOption_active : ''}`}
       >
         {option.name}
       </li>

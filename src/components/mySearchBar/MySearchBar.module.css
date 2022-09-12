@@ -42,14 +42,17 @@
 
 .searchBarOption {
   font-size: 16px;
-  line-height: 1.2;
+  line-height: 1.4;
   cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .searchBarOption {
+    line-height: 2;
+  }
+}
+
 .searchBarOption_active {
-  font-size: 16px;
-  line-height: 1.2;
-  cursor: pointer;
   background-color: #efefef;
 }
 
