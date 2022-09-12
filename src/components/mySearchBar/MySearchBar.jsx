@@ -37,6 +37,7 @@ export default function MySearchBar() {
       closeAndReset();
     }
     if (e.code === 'Enter') {
+      if (!options.length || activeOption < 0) return;
       const city = options[activeOption];
       dispatch(setCityAndGetWeather(city));
       closeAndReset();
