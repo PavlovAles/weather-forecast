@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import styles from './MySearchBar.module.css'
-import { cities } from '../../utils/cities';
 import { useDispatch } from 'react-redux';
 import { getWeather } from '../../store/weatherSlice';
+import cities from '../../utils/cities';
+import styles from './MySearchBar.module.css';
 
 export default function MySearchBar() {
   const [inputValue, setInputValue] = useState('');
@@ -19,16 +19,16 @@ export default function MySearchBar() {
     setActiveOption(-1);
   }
 
-  function handleInputClick(e) {
-    setShowDropDown(true);
-    document.addEventListener('click', handleClickOutside);
-  }
-
   function handleClickOutside(e) {
     if (!e.target.classList[0].includes('searchBar')) {
-      closeAndReset()
+      closeAndReset();
       document.removeEventListener('click', handleClickOutside);
     }
+  }
+
+  function handleInputClick() {
+    setShowDropDown(true);
+    document.addEventListener('click', handleClickOutside);
   }
 
   function handleKeyDown(e) {
@@ -41,7 +41,7 @@ export default function MySearchBar() {
       closeAndReset();
     }
     if (showDropDown && (e.code === 'ArrowDown' || e.code === 'ArrowUp')) {
-      const step = (e.code === 'ArrowDown') ? 1 : -1;
+      const step = e.code === 'ArrowDown' ? 1 : -1;
       setActiveOption((prev) => {
         if (prev < 0 || prev + step < 0) {
           return 0;
@@ -62,7 +62,7 @@ export default function MySearchBar() {
       setActiveOption(0);
       return;
     }
-    const filteredOptions = cities.filter(city => city.label.toLowerCase().includes(input));
+    const filteredOptions = cities.filter((city) => city.label.toLowerCase().includes(input));
     setOptions(filteredOptions);
     setActiveOption(0);
     setShowDropDown(true);
@@ -71,10 +71,25 @@ export default function MySearchBar() {
   function handleOptionClick(e) {
     if (e.target.classList[0].includes('searchBarOption')) {
       closeAndReset();
-      const city = options.find(i => i.label === e.target.textContent);
+      const city = options.find((i) => i.label === e.target.textContent);
       dispatch(getWeather({ name: city.label, coord: city.coord }));
       setShowDropDown(false);
     }
+  }
+
+  function renderOption(option, ind) {
+    return (
+      <li
+        key={option.value}
+        className={
+          ind === activeOption
+            ? styles.searchBarOption_active
+            : styles.searchBarOption
+        }
+      >
+        {option.label}
+      </li>
+    );
   }
 
   return (
@@ -82,24 +97,20 @@ export default function MySearchBar() {
       <input
         className={styles.searchBarInput}
         value={inputValue}
-        type='text'
-        placeholder='Город'
+        type="text"
+        placeholder="Город"
         onClick={handleInputClick}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      {showDropDown &&
+      {showDropDown && (
         <ul className={styles.searchBarDropDown} onClick={handleOptionClick}>
-          {options.map((option, ind) => {
-            return <li
-              className={(ind === activeOption) ? styles.searchBarOption_active : styles.searchBarOption}
-              key={option.value}>
-              {option.label}
-            </li>
-          })
-          }
-          {!options.length && <li className={styles.searchBarNoOption}>Ничего не найдено</li>}
-        </ul>}
-    </div >
-  )
+          {options.map(renderOption)}
+          {!options.length && (
+            <li className={styles.searchBarNoOption}>Ничего не найдено</li>
+          )}
+        </ul>
+      )}
+    </div>
+  );
 }

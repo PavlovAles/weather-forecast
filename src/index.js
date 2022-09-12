@@ -9,6 +9,7 @@ import App from './components/app/App';
 const container = document.getElementById('root');
 const root = createRoot(container);
 
+/* eslint-disable react/jsx-filename-extension, comma-dangle */
 root.render(
   <React.StrictMode>
     <HashRouter>

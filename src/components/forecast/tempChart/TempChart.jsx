@@ -12,7 +12,6 @@ import {
 import { Line } from 'react-chartjs-2';
 
 function TempChart({ forecast }) {
-
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -20,7 +19,7 @@ function TempChart({ forecast }) {
     LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
   );
 
   const options = {
@@ -29,9 +28,9 @@ function TempChart({ forecast }) {
       y: {
         title: {
           display: true,
-          text: 'Температура, °С'
-        }
-      }
+          text: 'Температура, °С',
+        },
+      },
     },
     plugins: {
       legend: {
@@ -40,10 +39,15 @@ function TempChart({ forecast }) {
     },
   };
 
-  const tempArray = forecast.map(day => day.main.temp);
-  const tempLabels = forecast.map(day => {
-    let date = new Date(day.dt * 1000);
-    return date.toLocaleString([], { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  const tempArray = forecast.map((day) => day.main.temp);
+  const tempLabels = forecast.map((day) => {
+    const date = new Date(day.dt * 1000);
+    return date.toLocaleString([], {
+      day: 'numeric',
+      month: 'short',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
   });
 
   const data = {

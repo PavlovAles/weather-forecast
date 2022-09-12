@@ -4,8 +4,8 @@ import styles from './Spinner.module.css';
 
 function Spinner() {
   return (
-    <img className={styles.spinner} src={spinnerPath} alt='Иконка спиннер' />
-  )
+    <img className={styles.spinner} src={spinnerPath} alt="Иконка спиннер" />
+  );
 }
 
 export default Spinner;

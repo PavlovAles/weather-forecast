@@ -8,19 +8,19 @@ import {
 
 export const getLocationAndCurrentWeather = createAsyncThunk(
   'weather/getLocationAndCurrentWeather',
-  async function (position, { rejectWithValue }) {
+  async (position, { rejectWithValue }) => {
     try {
       const [city, weather] = await fetchLocationAndCurrentWeather(position);
-      return { city, weather }
+      return { city, weather };
     } catch (err) {
       return rejectWithValue({ name: err.name, message: err.message });
     }
-  }
+  },
 );
 
 export const getWeather = createAsyncThunk(
   'weather/getWeather',
-  async function (city, { dispatch, rejectWithValue }) {
+  async (city, { dispatch, rejectWithValue }) => {
     dispatch(setCity({ city }));
     try {
       const [weather, forecast] = await fetchWeather(city.coord);
@@ -28,20 +28,20 @@ export const getWeather = createAsyncThunk(
     } catch (err) {
       return rejectWithValue({ name: err.name, message: err.message });
     }
-  }
+  },
 );
 
 export const getBigCitiesWeather = createAsyncThunk(
   'weather/getBigCitiesWeather',
-  async function (_, { rejectWithValue }) {
+  async (_, { rejectWithValue }) => {
     try {
       const data = await fetchBigCitiesWeather();
-      return data.map(a => a.data)
+      return data.map((a) => a.data);
     } catch (err) {
       return rejectWithValue({ name: err.name, message: err.message });
     }
-  }
-)
+  },
+);
 
 const savedCity = JSON.parse(localStorage.getItem('city'));
 
@@ -59,7 +59,7 @@ const weatherSlice = createSlice({
   reducers: {
     setCity(state, action) {
       state.city = action.payload.city;
-    }
+    },
   },
   extraReducers: {
     [getWeather.pending]: (state) => {
@@ -74,15 +74,14 @@ const weatherSlice = createSlice({
     [getWeather.rejected]: (state, action) => {
       state.error = action.payload;
     },
-    ///////
-    [getLocationAndCurrentWeather.pending]: (state) => { },
+    [getLocationAndCurrentWeather.pending]: () => { },
     [getLocationAndCurrentWeather.fulfilled]: (state, action) => {
       state.city = {
         name: action.payload.city.local_names.ru,
         coord: {
           lat: action.payload.city.lat,
           lon: action.payload.city.lon,
-        }
+        },
       };
       state.weather = action.payload.weather;
       state.weatherLoading = false;
@@ -90,7 +89,6 @@ const weatherSlice = createSlice({
     [getLocationAndCurrentWeather.rejected]: (state, action) => {
       state.error = action.payload;
     },
-    ///////
     [getBigCitiesWeather.pending]: (state) => {
       state.bigCitiesWeather = null;
     },
@@ -101,7 +99,7 @@ const weatherSlice = createSlice({
     [getBigCitiesWeather.rejected]: (state, action) => {
       state.error = action.payload;
     },
-  }
+  },
 });
 
 export const { setCity } = weatherSlice.actions;
