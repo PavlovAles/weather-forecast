@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styles from './TableRow.module.css';
 import useWindowWidth from '../../../hooks/useWindowWidth';
@@ -11,7 +12,7 @@ function TableRow({ weather }) {
   const windowWidth = useWindowWidth();
 
   const description = weather.weather[0];
-  const main = weather.main;
+  const { main } = weather;
 
   let date = new Date(weather.dt * 1000);
   date = date.toLocaleString([], {
