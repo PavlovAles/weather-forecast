@@ -16,7 +16,7 @@
 - Для получения прогноза погоды используется OpenWeatherAPI
 
 <p align="center">
-<img src="https://clck.ru/zRtMx" alt="Анимация с базовым функционалом"></p>
+<img src="https://i.ibb.co/37f7XJT/weather.gif" alt="Анимация с базовым функционалом"></p>
 
 ## Описание проекта
 
