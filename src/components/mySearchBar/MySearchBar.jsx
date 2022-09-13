@@ -82,8 +82,8 @@ export default function MySearchBar() {
     }
   }
 
-  function renderOption(option, ind) {
-    return (
+  function renderOption(optionsList) {
+    return optionsList.map((option, ind) => (
       <li
         key={option.id}
         className={`
@@ -92,7 +92,7 @@ export default function MySearchBar() {
       >
         {option.name}
       </li>
-    );
+    ));
   }
 
   return (
@@ -108,7 +108,7 @@ export default function MySearchBar() {
       />
       {showDropDown && (
         <ul className={styles.searchBarDropDown} onClick={handleOptionClick} role='presentation'>
-          {options.map(renderOption)}
+          {renderOption(options)}
           {!options.length && (
             <li className={styles.searchBarNoOption}>Ничего не найдено</li>
           )}
