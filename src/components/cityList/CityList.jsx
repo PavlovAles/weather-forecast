@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setCityAndGetWeather } from '../../store/weatherSlice';
-import { roundToDec } from '../../utils/utils';
 import Spinner from '../spinner/Spinner';
 import styles from './CityList.module.css';
 
@@ -35,7 +34,7 @@ function CityList() {
                   alt='Иконка погоды'
                 />
                 <p className={styles.subtext}>
-                  {`${city.main.temp > 0 ? '+' : ''}${roundToDec(city.main.temp)}°`}
+                  {`${city.main.temp > 0 ? '+' : ''}${city.main.temp.toFixed(1)}°`}
                 </p>
                 <h4 className={styles.subtext}>{city.name}</h4>
               </li>

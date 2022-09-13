@@ -1,8 +1,4 @@
-export function roundToDec(val) {
-  return Math.round(val * 10) / 10;
-}
-
-export function getReadableLocalTime(timezone) {
+export default function getReadableLocalTime(timezone) {
   const localDate = new Date();
   const localTime = localDate.getTime();
   const localOffset = localDate.getTimezoneOffset() * 60000;

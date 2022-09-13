@@ -2,7 +2,6 @@
 import React from 'react';
 import styles from './TableRow.module.css';
 import useWindowWidth from '../../../hooks/useWindowWidth';
-import { roundToDec } from '../../../utils/utils';
 
 import windIconPath from '../../../images/wind.svg';
 import windDirectionPath from '../../../images/wind_direction.svg';
@@ -36,10 +35,10 @@ function TableRow({ weather }) {
           />
           <div className={styles.tempContainer}>
             <p className={styles.subtext}>
-              {`${main.temp > 0 ? '+' : ''}${roundToDec(main.temp)}°`}
+              {`${main.temp > 0 ? '+' : ''}${main.temp.toFixed(1)}°`}
             </p>
             <p className={styles.feelsLike}>
-              {`${main.feels_like > 0 ? '+' : ''}${roundToDec(main.feels_like)}°`}
+              {`${main.feels_like > 0 ? '+' : ''}${main.feels_like.toFixed(1)}°`}
             </p>
           </div>
           {windowWidth > 480 && (
@@ -55,7 +54,7 @@ function TableRow({ weather }) {
             alt='Ветер'
           />
           <p className={styles.subtext}>
-            {`${roundToDec(weather.wind.speed)} м/с`}
+            {`${weather.wind.speed.toFixed(1)} м/с`}
           </p>
           <img
             className={styles.additional__windDirection}

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import useContainerDimensions from '../../hooks/useContainerDimensions';
-import { roundToDec, getReadableLocalTime } from '../../utils/utils';
+import getReadableLocalTime from '../../utils/getReadableLocalTime';
 
 import styles from './WeatherCard.module.css';
 import windIconPath from '../../images/wind.svg';
@@ -33,7 +33,7 @@ function WeatherCard() {
           </div>
           <div className={styles.summary}>
             <p className={styles.currentTemp}>
-              {`${main.temp > 0 ? '+' : ''}${roundToDec(main.temp)}°`}
+              {`${main.temp > 0 ? '+' : ''}${main.temp.toFixed(1)}°`}
             </p>
             <img
               className={styles.icon}
@@ -43,7 +43,7 @@ function WeatherCard() {
             <div className={styles.description}>
               <p className={styles.subtext}>{description.description}</p>
               <p className={styles.subtext}>
-                {`по ощущениям ${roundToDec(main.feels_like)}°`}
+                {`по ощущениям ${main.temp > 0 ? '+' : ''}${main.feels_like.toFixed(1)}°`}
               </p>
             </div>
           </div>

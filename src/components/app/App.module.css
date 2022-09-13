@@ -36,7 +36,7 @@ body {
   gap: 24px;
 }
 
-@media (max-width: 584px) {
+@media (max-width: 612px) {
   .content {
     padding: 12px;
     gap: 12px;
