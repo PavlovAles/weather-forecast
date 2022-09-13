@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/weather-forecast/static/css/main.8ec32df4.css",
-    "main.js": "/weather-forecast/static/js/main.b23fd930.js",
+    "main.css": "/weather-forecast/static/css/main.9de0a4f4.css",
+    "main.js": "/weather-forecast/static/js/main.e8763808.js",
     "static/media/Inter-Medium.woff?v=3.19": "/weather-forecast/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
     "static/media/Inter-Black.woff?v=3.19": "/weather-forecast/static/media/Inter-Black.c6938660eec019fefd68.woff",
     "static/media/Inter-Regular.woff?v=3.19": "/weather-forecast/static/media/Inter-Regular.8c206db99195777c6769.woff",
@@ -16,11 +16,11 @@
     "static/media/drop.svg": "/weather-forecast/static/media/drop.56bbbfb8080e8936b12a602f5f0e6d0a.svg",
     "static/media/gauge.svg": "/weather-forecast/static/media/gauge.c917aad776b07bf37b6c45d5b7fa41c6.svg",
     "static/media/wind_direction.svg": "/weather-forecast/static/media/wind_direction.a504b762aa55ac27d2ffb61b57f38301.svg",
-    "main.8ec32df4.css.map": "/weather-forecast/static/css/main.8ec32df4.css.map",
-    "main.b23fd930.js.map": "/weather-forecast/static/js/main.b23fd930.js.map"
+    "main.9de0a4f4.css.map": "/weather-forecast/static/css/main.9de0a4f4.css.map",
+    "main.e8763808.js.map": "/weather-forecast/static/js/main.e8763808.js.map"
   },
   "entrypoints": [
-    "static/css/main.8ec32df4.css",
-    "static/js/main.b23fd930.js"
+    "static/css/main.9de0a4f4.css",
+    "static/js/main.e8763808.js"
   ]
 }
